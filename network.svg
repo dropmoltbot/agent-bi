@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      @keyframes connect {
+        0% { stroke-dashoffset: 100; }
+        100% { stroke-dashoffset: 0; }
+      }
+      @keyframes pulse {
+        0%, 100% { r: 8; opacity: 1; }
+        50% { r: 12; opacity: 0.5; }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+      }
+      .node { animation: pulse 2s ease-in-out infinite; }
+      .node-center { animation: pulse 1.5s ease-in-out infinite; }
+      .link { stroke-dasharray: 5,5; animation: connect 2s linear infinite; }
+      .float { animation: float 3s ease-in-out infinite; }
+    </style>
+  </defs>
+  
+  <rect width="400" height="300" fill="#0a0a15"/>
+  
+  <!-- Grid -->
+  <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#00ffaa" stroke-width="0.3" opacity="0.1"/>
+  </pattern>
+  <rect width="400" height="300" fill="url(#smallGrid)"/>
+  
+  <!-- Connection lines -->
+  <g stroke="#00ffff" stroke-width="1" opacity="0.3" class="link">
+    <!-- Center to outer nodes -->
+    <line x1="200" y1="150" x2="100" y2="80"/>
+    <line x1="200" y1="150" x2="300" y2="80"/>
+    <line x1="200" y1="150" x2="80" y2="150"/>
+    <line x1="200" y1="150" x2="320" y2="150"/>
+    <line x1="200" y1="150" x2="100" y2="220"/>
+    <line x1="200" y1="150" x2="300" y2="220"/>
+    
+    <!-- Outer connections -->
+    <line x1="100" y1="80" x2="300" y2="80"/>
+    <line x1="100" y1="80" x2="80" y2="150"/>
+    <line x1="300" y1="80" x2="320" y2="150"/>
+    <line x1="80" y1="150" x2="100" y2="220"/>
+    <line x1="320" y1="150" x2="300" y2="220"/>
+    <line x1="100" y1="220" x2="300" y2="220"/>
+  </g>
+  
+  <!-- Outer nodes -->
+  <g filter="url(#glow)">
+    <circle cx="100" cy="80" r="8" fill="#0d0d1a" stroke="#ff00aa" stroke-width="2" class="node"/>
+    <circle cx="300" cy="80" r="8" fill="#0d0d1a" stroke="#00ffaa" stroke-width="2" class="node"/>
+    <circle cx="80" cy="150" r="8" fill="#0d0d1a" stroke="#aa00ff" stroke-width="2" class="node"/>
+    <circle cx="320" cy="150" r="8" fill="#0d0d1a" stroke="#00ffaa" stroke-width="2" class="node"/>
+    <circle cx="100" cy="220" r="8" fill="#0d0d1a" stroke="#00ffaa" stroke-width="2" class="node"/>
+    <circle cx="300" cy="220" r="8" fill="#0d0d1a" stroke="#ff00aa" stroke-width="2" class="node"/>
+  </g>
+  
+  <!-- Center node (dropmoltbot) -->
+  <g filter="url(#glow)" class="float">
+    <circle cx="200" cy="150" r="20" fill="url(#nodeGlow)" class="node-center"/>
+    <circle cx="200" cy="150" r="12" fill="#0d0d1a" stroke="#00ffaa" stroke-width="3"/>
+    <text x="200" y="155" font-family="monospace" font-size="8" fill="#00ffaa" text-anchor="middle">🤖</text>
+  </g>
+  
+  <!-- Labels -->
+  <g font-family="monospace" font-size="10">
+    <text x="100" y="65" fill="#ff00aa" text-anchor="middle">FORTYTWO</text>
+    <text x="300" y="65" fill="#00ffaa" text-anchor="middle">CONCLAVE</text>
+    <text x="80" y="175" fill="#aa00ff" text-anchor="middle">GITHUB</text>
+    <text x="320" y="175" fill="#00ffaa" text-anchor="middle">GEMINI</text>
+    <text x="100" y="245" fill="#00ffaa" text-anchor="middle">VERCEL</text>
+    <text x="300" y="245" fill="#ff00aa" text-anchor="middle">AGENTBI</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="280" font-family="monospace" font-size="14" fill="#00ffaa" text-anchor="middle" opacity="0.8">Decentralized Agent Network</text>
+</svg>

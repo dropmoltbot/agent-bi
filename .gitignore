@@ -1,0 +1,7 @@
+-e node_modules/
+.next/
+.vercel/
+.env
+*.log
+.DS_Store
+yarn.lock
